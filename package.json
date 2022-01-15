@@ -5,13 +5,17 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "precommit": "echo 'hello'"
   },
-  "author": "",
+  "author": "Filip Kochan",
   "license": "ISC",
   "dependencies": {
     "node-notifier": "^10.0.0",
     "pact-lang-api": "^4.2.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "husky": "^7.0.4"
+  }
 }
