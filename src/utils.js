@@ -1,13 +1,7 @@
-import Pact from "pact-lang-api";
-import {
-  CHAIN_ID,
-  GAS_PRICE,
-  NETWORK,
-  TOKEN_1_CODE,
-  TOKEN_2_CODE,
-} from "./constants.js";
+import Pact from 'pact-lang-api'
+import { CHAIN_ID, GAS_PRICE, NETWORK, TOKEN_1_CODE, TOKEN_2_CODE } from './constants.js'
 
-export const creationTime = () => Math.round(new Date().getTime() / 1000) - 10;
+export const creationTime = () => Math.round(new Date().getTime() / 1000) - 10
 
 /**
  * Returns value after the specified parameter name in `process.argv`.
@@ -15,10 +9,10 @@ export const creationTime = () => Math.round(new Date().getTime() / 1000) - 10;
  * @returns {string | undefined}
  */
 export const getParam = (paramName) => {
-  const index = process.argv.findIndex((val) => val === paramName);
-  if (index === -1) return;
-  return process.argv[index + 1];
-};
+  const index = process.argv.findIndex((val) => val === paramName)
+  if (index === -1) return
+  return process.argv[index + 1]
+}
 
 /**
  * Adds date info to the current ratio.
@@ -26,11 +20,9 @@ export const getParam = (paramName) => {
  * @returns {string}
  */
 export const formatRateInfo = (ratio) => {
-  const date = new Date();
-  return `${date.getDate()}/${
-    date.getMonth() + 1
-  } ${date.getHours()}:${date.getMinutes()} -- ${ratio}\n`;
-};
+  const date = new Date()
+  return `${date.getDate()}/${date.getMonth() + 1} ${date.getHours()}:${date.getMinutes()} -- ${ratio}\n`
+}
 
 /**
  * Gets the current rate between `KDA` and `KDL`.
@@ -50,20 +42,13 @@ export const getRate = async () => {
                   (totalBal (free.tokens.total-supply (free.exchange.get-pair-key ${TOKEN_1_CODE} ${TOKEN_2_CODE})))
                 )[totalBal reserveA reserveB])
                `,
-        meta: Pact.lang.mkMeta(
-          "",
-          CHAIN_ID,
-          GAS_PRICE,
-          3000,
-          creationTime(),
-          600
-        ),
+        meta: Pact.lang.mkMeta('', CHAIN_ID, GAS_PRICE, 3000, creationTime(), 600)
       },
       NETWORK
-    );
-    const [_, { decimal: dec1 }, { decimal: dec2 }] = res.result.data;
-    return dec1 / dec2;
+    )
+    const [, { decimal: dec1 }, { decimal: dec2 }] = res.result.data
+    return dec1 / dec2
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
-};
+}
