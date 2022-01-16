@@ -1,12 +1,16 @@
-import { consoleInfo, formatRateInfo, getParam, getRate } from './utils.js'
-import { DEF_INTERVAL, DEF_LOWER_BOUND, DEF_UPPER_BOUND } from './constants.js'
-import notifier from 'node-notifier'
-import fs from 'fs'
-import path from 'path'
+const { consoleInfo, formatRateInfo, getParam, getRate } = require('./utils.js')
+const {
+  DEF_INTERVAL,
+  DEF_LOWER_BOUND,
+  DEF_UPPER_BOUND
+} = require('./constants.js')
+const notifier = require('node-notifier')
+const fs = require('fs')
+const path = require('path')
 
 const LOWER_BOUND = parseFloat(getParam('-l')) || DEF_LOWER_BOUND
 const UPPER_BOUND = parseFloat(getParam('-u')) || DEF_UPPER_BOUND
-const INTERVAL = parseInt(getParam('-i')) || DEF_INTERVAL
+const INTERVAL = parseInt(getParam('-i')) * 1000 || DEF_INTERVAL
 
 consoleInfo(LOWER_BOUND, UPPER_BOUND, INTERVAL)
 

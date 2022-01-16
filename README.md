@@ -1,5 +1,5 @@
 # CRYPTO PINGER
-A simple app for notifying `KDA/KDL` rate hits a specified bound.
+A simple app for notifying when `KDA/KDL` rate hits a specified bound.
 
 ## On first use
 ```
