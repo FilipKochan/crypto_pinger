@@ -1,7 +1,7 @@
 {
   "name": "crypto_pinger",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple app for notifying when `KDA/KDL` rate hits a specified bound.",
   "main": "src/index.js",
   "husky": {
     "hooks": {
@@ -24,7 +24,6 @@
     "node-notifier": "^10.0.0",
     "pact-lang-api": "^4.2.0"
   },
-  "type": "module",
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
