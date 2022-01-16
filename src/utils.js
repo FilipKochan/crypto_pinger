@@ -1,5 +1,12 @@
 import Pact from 'pact-lang-api'
-import { CHAIN_ID, GAS_PRICE, NETWORK, TOKEN_1_CODE, TOKEN_2_CODE } from './constants.js'
+import {
+  CHAIN_ID,
+  GAS_PRICE,
+  NETWORK,
+  TOKEN_1_CODE,
+  TOKEN_2_CODE
+} from './constants.js'
+import path from 'path'
 
 export const creationTime = () => Math.round(new Date().getTime() / 1000) - 10
 
@@ -21,7 +28,9 @@ export const getParam = (paramName) => {
  */
 export const formatRateInfo = (ratio) => {
   const date = new Date()
-  return `${date.getDate()}/${date.getMonth() + 1} ${date.getHours()}:${date.getMinutes()} -- ${ratio}\n`
+  return `${date.getDate()}/${
+    date.getMonth() + 1
+  } ${date.getHours()}:${date.getMinutes()} -- ${ratio}\n`
 }
 
 /**
@@ -42,7 +51,14 @@ export const getRate = async () => {
                   (totalBal (free.tokens.total-supply (free.exchange.get-pair-key ${TOKEN_1_CODE} ${TOKEN_2_CODE})))
                 )[totalBal reserveA reserveB])
                `,
-        meta: Pact.lang.mkMeta('', CHAIN_ID, GAS_PRICE, 3000, creationTime(), 600)
+        meta: Pact.lang.mkMeta(
+          '',
+          CHAIN_ID,
+          GAS_PRICE,
+          3000,
+          creationTime(),
+          600
+        )
       },
       NETWORK
     )
@@ -51,4 +67,19 @@ export const getRate = async () => {
   } catch (e) {
     console.error(e)
   }
+}
+
+export const consoleInfo = (lower, upper, interval) => {
+  console.clear()
+  console.log(
+    `Using ${lower} as lower bound.
+Using ${upper} as upper bound.
+Getting new data every ${interval / 1000} seconds.
+`
+  )
+  console.log(
+    '\x1b[32m%s\x1b[0m',
+    `Logging rates into ${path.join(process.cwd(), 'log.txt')}`
+  )
+  console.log('\nYou can stop the app with CTRL-C...')
 }

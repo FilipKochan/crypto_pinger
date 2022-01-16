@@ -1,5 +1,5 @@
 # CRYPTO PINGER
-A simple app for notifying on `KDA/KDL` rates
+A simple app for notifying `KDA/KDL` rate hits a specified bound.
 
 ## On first use
 ```
@@ -8,5 +8,5 @@ npm install
 
 ## Run with
 ```
-npm start
+npm start [-- [-l customLowerBound] [-u customUpperBound] [-i customInterval]]
 ```
